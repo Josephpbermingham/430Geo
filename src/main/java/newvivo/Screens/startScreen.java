@@ -94,8 +94,11 @@ public class StartScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_LoadExistingProjectActionPerformed
 //create a new folder in current directory
     private void createNewProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewProjectActionPerformed
-        // TODO add your handling code here:
-        int returnVal = fc.showOpenDialog(this);
+        //pull up a new screen thsat asks for the name of the project
+        Main.mainObj.newProjectVis(true);
+        
+        //create a folder with that name
+        //switch
     }//GEN-LAST:event_createNewProjectActionPerformed
 
     /**
