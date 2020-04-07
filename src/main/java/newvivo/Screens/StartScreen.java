@@ -87,6 +87,7 @@ public class StartScreen extends javax.swing.JFrame {
             File file = fc.getSelectedFile();
             //This is where a real application would open the file.
             System.out.println("Opening: " + file.getName() + "." + newline);
+            Main.mainObj.projectObj = new Project(file.getPath);
         } else {
             System.out.println("Open command canceled by user." + newline);
         }    

@@ -2,6 +2,7 @@ package newvivo.code;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import newvivo.code.Tag;
 //Tag OBJ needs to be written
 
@@ -10,16 +11,26 @@ public class Project {
     private ArrayList<String> textFiles;
     private ArrayList<Tag> tags;//todo make tag work
     private String projectPath;
-    
+    private File projectFolder;
+
     //New Project
     Project() {
 
     }
-    //project with an already existing folder??? i dont know at time of writing
-    Project(String path) {
 
+    /**
+     * @param path a path to an existing folder
+     * @output a Project object that will allow you to access the files inside
+     * of the given folder
+     */
+    public Project(String path) {
+        System.out.println(path);
+        this.projectFolder = new File(path);
+        this.projectPath = path;
+        //adds all of the paths to textfiles to textfile, this is prolly not what we want
+        //https://docs.oracle.com/javase/7/docs/api/java/io/File.html
+        Collections.addAll(this.textFiles, this.projectFolder.list());
     }
-    
 
     public boolean addDocument(String path) {
         //parse path to get name (after last /)
@@ -60,4 +71,9 @@ public class Project {
         return false;
     }
 
+    public void listFiles() {
+        for (String a: this.textFiles) {
+            System.out.println(a);
+        }
+    }
 }

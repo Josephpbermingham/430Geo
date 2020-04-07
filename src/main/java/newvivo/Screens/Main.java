@@ -5,18 +5,26 @@
  */
 package newvivo.Screens;
 
+import java.io.File;
+import newvivo.code.Project;
+
 /**
  * This is the main class, the mainObj is the way that we are going to access 
  * our screens, the visibility
  * 
+ * this should essentially act as a singleton, storing the things that we
+ * will need to repeatedly access, such as the screens and project.
  * @author Joseph Bermingham, Matt, Adam
  */
 public class Main {
-
+    //container object
+    static Main mainObj = new Main(); 
+    
+    //class objects
     NewProject newProject;
     StartScreen startScreen;
     ProjectLoad projectLoad;
-    static Main mainObj = new Main();
+    Project projectObj;
 
     public static void main(String args[]) {
         //create everyting and set start to true
@@ -29,6 +37,8 @@ public class Main {
         newProject = new NewProject();
         startScreen = new StartScreen();
         projectLoad = new ProjectLoad();
+        
+        
     }
 
     public void newProjectVis(boolean visible) {
