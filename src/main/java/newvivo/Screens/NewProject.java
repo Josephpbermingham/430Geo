@@ -5,6 +5,8 @@
  */
 package newvivo.Screens;
 
+import java.io.File;
+
 /**
  *
  * @author Joseph Bermingham
@@ -72,10 +74,17 @@ public class NewProject extends javax.swing.JFrame {
 
     private void SubmitNewProjectNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitNewProjectNameActionPerformed
         // TODO add your handling code here:
+        File dir = new File(System.getProperty("user.dir")+"\\Projects\\"+newProjectName.getText());
+        boolean bool = dir.mkdir();
+        if(bool){
         Main.mainObj.startScreen.setVisible(false);
         Main.mainObj.projectLoad.setVisible(true);
         Main.mainObj.newProject.setVisible(false);
-
+        
+        }
+        else{
+            System.out.println(dir.getPath());   
+        }
 
     }//GEN-LAST:event_SubmitNewProjectNameActionPerformed
 
