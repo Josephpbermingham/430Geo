@@ -6,8 +6,10 @@
 package newvivo.Screens;
 
 /**
- *
- * @author Joseph Bermingham
+ * This is the main class, the mainObj is the way that we are going to access 
+ * our screens, the visibility
+ * 
+ * @author Joseph Bermingham, Matt, Adam
  */
 public class Main {
 

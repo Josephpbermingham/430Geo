@@ -5,19 +5,14 @@
  */
 package newvivo.Screens;
 
-import java.io.File;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.UIManager;
 /**
  *
  * @author Joseph Bermingham
  */
 public class StartScreen extends javax.swing.JFrame {
-    //the filechooser that both of the boiis use
-    final JFileChooser fc = new JFileChooser(System.getProperty("user.dir")+"/Projects");
+
     /**
-     * Creates new form startScreen
+     * Creates new form StartScreen
      */
     public StartScreen() {
         initComponents();
@@ -32,74 +27,21 @@ public class StartScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        createNewProject = new javax.swing.JButton();
-        LoadExistingProject = new javax.swing.JButton();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        createNewProject.setText("Create New Project");
-        createNewProject.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createNewProjectActionPerformed(evt);
-            }
-        });
-
-        LoadExistingProject.setText("Load Existing Project");
-        LoadExistingProject.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoadExistingProjectActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(195, 195, 195)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(LoadExistingProject, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
-                    .addComponent(createNewProject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(288, Short.MAX_VALUE))
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(163, 163, 163)
-                .addComponent(createNewProject, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(115, 115, 115)
-                .addComponent(LoadExistingProject, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    //read in the files from a given directory
-    private void LoadExistingProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadExistingProjectActionPerformed
-        // TODO add your handling code here:
-        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-       
-        int returnVal = fc.showOpenDialog(this);
-        System.out.println(returnVal);
-        String newline = "\n";
-         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File file = fc.getSelectedFile();
-            //This is where a real application would open the file.
-            System.out.println("Opening: " + file.getName() + "." + newline);
-        } else {
-            System.out.println("Open command canceled by user." + newline);
-        }    
-        
-    }//GEN-LAST:event_LoadExistingProjectActionPerformed
-//create a new folder in current directory
-    private void createNewProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewProjectActionPerformed
-        //pull up a new screen thsat asks for the name of the project
-        Main.mainObj.newProjectVis(true);
-        
-        //create a folder with that name
-        //switch
-    }//GEN-LAST:event_createNewProjectActionPerformed
 
     /**
      * @param args the command line arguments
@@ -111,7 +53,12 @@ public class StartScreen extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(StartScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -121,7 +68,6 @@ public class StartScreen extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(StartScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -133,7 +79,5 @@ public class StartScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton LoadExistingProject;
-    private javax.swing.JButton createNewProject;
     // End of variables declaration//GEN-END:variables
 }
