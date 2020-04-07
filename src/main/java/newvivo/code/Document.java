@@ -7,7 +7,7 @@ package newvivo.code;
 
 /**
  *
- * 
+ * @author Joseph Bermingham
  */
 public class Document {
     
