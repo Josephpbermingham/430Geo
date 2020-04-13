@@ -10,13 +10,16 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import newvivo.code.Project;
+
 /**
  *
  * @author Joseph Bermingham
  */
 public class StartScreen extends javax.swing.JFrame {
+
     //the filechooser that both of the boiis use
-    final JFileChooser fc = new JFileChooser(System.getProperty("user.dir")+"/Projects");
+    final JFileChooser fc = new JFileChooser(System.getProperty("user.dir") + "/Projects");
+
     /**
      * Creates new form startScreen
      */
@@ -55,22 +58,22 @@ public class StartScreen extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(195, 195, 195)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(LoadExistingProject, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
-                    .addComponent(createNewProject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(288, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(195, 195, 195)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(LoadExistingProject, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+                                        .addComponent(createNewProject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(288, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(163, 163, 163)
-                .addComponent(createNewProject, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(115, 115, 115)
-                .addComponent(LoadExistingProject, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(163, 163, 163)
+                                .addComponent(createNewProject, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(115, 115, 115)
+                                .addComponent(LoadExistingProject, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         pack();
@@ -80,25 +83,29 @@ public class StartScreen extends javax.swing.JFrame {
     private void LoadExistingProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadExistingProjectActionPerformed
         // TODO add your handling code here:
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-       
+
         int returnVal = fc.showOpenDialog(this);
         System.out.println(returnVal);
         String newline = "\n";
-         if (returnVal == JFileChooser.APPROVE_OPTION) {
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
-            //This is where a real application would open the file.
-            System.out.println("Opening: " + file.getName() + "." + newline);
+
+            //create a new project from the chosen project directory,  
             Main.mainObj.projectObj = new Project(file.getPath());
-            
+            //change screens
+            Main.mainObj.projectLoadVis(true);
+            Main.mainObj.startScreenVis(false);
+
         } else {
             System.out.println("Open command canceled by user." + newline);
-        }    
-        
+        }
+
     }//GEN-LAST:event_LoadExistingProjectActionPerformed
 //create a new folder in current directory
+
     private void createNewProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewProjectActionPerformed
         // TODO add your handling code here:
-       Main.mainObj.newProjectVis(true);
+        Main.mainObj.newProjectVis(true);
     }//GEN-LAST:event_createNewProjectActionPerformed
 
     /**

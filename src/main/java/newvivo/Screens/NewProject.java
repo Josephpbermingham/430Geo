@@ -78,6 +78,8 @@ public class NewProject extends javax.swing.JFrame {
         String path = System.getProperty("user.dir")+"\\Projects\\"+newProjectName.getText();
         File dir = new File(path);
         boolean bool = dir.mkdir();
+        //If the directory is made correctly move on and set current project 
+        //to the new directory
         if(bool){
         Main.mainObj.startScreen.setVisible(false);
         Main.mainObj.projectLoad.setVisible(true);
@@ -86,6 +88,7 @@ public class NewProject extends javax.swing.JFrame {
         Main.mainObj.projectObj.listFiles();
         
         }
+        //else do nothing, print the erronious path
         else{
             System.out.println(dir.getPath());   
         }

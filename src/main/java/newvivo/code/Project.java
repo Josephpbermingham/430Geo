@@ -3,13 +3,13 @@ package newvivo.code;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
-import newvivo.code.Tag;
+import newvivo.code.Tags;
 //Tag OBJ needs to be written
 
 public class Project {
 
     private ArrayList<String> textFiles;
-    private ArrayList<Tag> tags;//todo make tag work
+    private ArrayList<Tags> tags;//todo make tag work
     private String projectPath;
     private File projectFolder;
 
@@ -52,8 +52,8 @@ public class Project {
 
     public boolean addTag(String tagContent) {
         //create newTag tag object
-        Tag newTag;
-        newTag = new Tag();
+        Tags newTag;
+        newTag = new Tags("TEMP","TEMP","TEMP");
         tags.add(newTag);
         //check
         return true;
