@@ -8,7 +8,7 @@ import newvivo.code.Tags;
 
 public class Project {
 
-    private ArrayList<String> textFiles;
+    private ArrayList<Document> textFiles;
     private ArrayList<Tags> tags;//todo make tag work
     private String projectPath;
     private File projectFolder;
@@ -27,16 +27,34 @@ public class Project {
         System.out.println(path);
         this.projectFolder = new File(path);
         this.projectPath = path;
+        this.textFiles = new ArrayList<Document>();
         //adds all of the paths to textfiles to textfile, this is prolly not what we want
         //https://docs.oracle.com/javase/7/docs/api/java/io/File.html
-        Collections.addAll(this.textFiles, this.projectFolder.list());
+        String[] contents = this.projectFolder.list();
+        if (contents.length > 0) {
+            for (String content : contents) {
+                try {
+                    this.textFiles.add(new Document(projectPath, content));
+                } catch (FileNotFoundException ex) {
+                    System.out.println("File Not found exception when initializing project\n" + ex);
+                } catch (IOException exept) {
+                    System.out.println("IO Exception when initializing a previousl created project\n" + exept);
+                }
+            }
+        }
     }
 
     public boolean addDocument(String path) {
         //parse path to get name (after last /)
         //create copy to projectpath(newPath) of path file into project directory
-        String newPath = "Not currently working♥";
-        textFiles.add(newPath);
+        //TODO make sure this is what we want it to do.
+        try {
+            textFiles.add(new Document(this.projectPath, path));
+        } catch (FileNotFoundException ex) {
+            System.out.println("File Not found exception when initializing project\n" + ex);
+        } catch (IOException exept) {
+            System.out.println("IO Exception when initializing a previousl created project\n" + exept);
+        }
         //check if file added
         return true;//if yes else no
 
@@ -53,7 +71,7 @@ public class Project {
     public boolean addTag(String tagContent) {
         //create newTag tag object
         Tags newTag;
-        newTag = new Tags("TEMP","TEMP","TEMP");
+        newTag = new Tags("TEMP", "TEMP", "TEMP");
         tags.add(newTag);
         //check
         return true;
@@ -72,7 +90,7 @@ public class Project {
     }
 
     public void listFiles() {
-        for (String a: this.textFiles) {
+        for (String a : this.textFiles) {
             System.out.println(a);
         }
     }

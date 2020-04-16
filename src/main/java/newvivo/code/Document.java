@@ -8,10 +8,10 @@ package newvivo.code;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
-
-
 
 /**
  *
@@ -23,16 +23,18 @@ public class Document {
     private String path;
     private String fileTitle;
 
-   
-        public Document(String projectPath,String fileTitle) throws FileNotFoundException, IOException{
+    public Document(String projectPath, String fileTitle) throws FileNotFoundException, IOException {
+        this.fileTitle = fileTitle; 
+        path = projectPath+"\\"+fileTitle;
+        
+        XWPFDocument docx = new XWPFDocument(new FileInputStream(projectPath+"\\"+fileTitle));
 
-            XWPFDocument docx = new XWPFDocument(new FileInputStream("create_paragraph.docx"));
+        //using XWPFWordExtractor Class
+        XWPFWordExtractor we = new XWPFWordExtractor(docx);
+        content = we.getText();
+    }
 
-            //using XWPFWordExtractor Class
-            XWPFWordExtractor we = new XWPFWordExtractor(docx);
-            System.out.println(we.getText());
-        }
-         public String getContent() {
+    public String getContent() {
         return content;
     }
 
@@ -55,5 +57,14 @@ public class Document {
     public void setFileTitle(String fileTitle) {
         this.fileTitle = fileTitle;
     }
-    
+
+    public static void main(String args[]) {
+        String path = System.getProperty("user.dir")+"\\Projects\\temp";
+        try {
+            Document test = new Document(path,"TestResume.docx");
+            System.out.println(test.getContent());
+        } catch (IOException ex) {
+            Logger.getLogger(Document.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+}
