@@ -90,8 +90,8 @@ public class Project {
     }
 
     public void listFiles() {
-        for (String a : this.textFiles) {
+        /*for (String a : this.textFiles) {
             System.out.println(a);
-        }
+        }*/
     }
 }
