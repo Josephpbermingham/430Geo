@@ -113,7 +113,7 @@ public class Project {
             bufferedWriter.close();
         }
         catch (IOException ex) { System.out.println("Error writing to file"); }
-        return false;
+        return true;
     }
 
     public void listFiles() {
