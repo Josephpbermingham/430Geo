@@ -17,14 +17,17 @@ import newvivo.code.Project;
  * @author Joseph Bermingham, Matt, Adam
  */
 public class Main {
-    //container object
-    static Main mainObj = new Main(); 
+    //container object should be a thread protected singleton. but meh
+    public static Main mainObj = new Main(); 
     
     //class objects
     NewProject newProject;
     StartScreen startScreen;
     ProjectLoad projectLoad;
+    CreateTag createTag;
     Project projectObj;
+   
+   
 
     public static void main(String args[]) {
         //create everyting and set start to true
@@ -37,6 +40,7 @@ public class Main {
         newProject = new NewProject();
         startScreen = new StartScreen();
         projectLoad = new ProjectLoad();
+        createTag = new CreateTag();     
         
         
     }
@@ -49,5 +53,12 @@ public class Main {
     }
     public void projectLoadVis(boolean visible) {
         this.projectLoad.setVisible(visible);
+    }
+     public Project getProjectObj() {
+        return projectObj;
+    }
+
+    public void setProjectObj(Project projectObj) {
+        this.projectObj = projectObj;
     }
 }

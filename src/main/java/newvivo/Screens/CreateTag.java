@@ -5,6 +5,8 @@
  */
 package newvivo.Screens;
 
+import newvivo.code.Tags;
+
 /**
  *
  * @author Joseph Bermingham
@@ -27,7 +29,7 @@ public class CreateTag extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tagTextFeirl = new javax.swing.JTextField();
+        tagTextFeild = new javax.swing.JTextField();
         tagNameTextField = new javax.swing.JTextField();
         anotherTagButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -36,9 +38,9 @@ public class CreateTag extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tagTextFeirl.addActionListener(new java.awt.event.ActionListener() {
+        tagTextFeild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tagTextFeirlActionPerformed(evt);
+                tagTextFeildActionPerformed(evt);
             }
         });
 
@@ -80,7 +82,7 @@ public class CreateTag extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tagNameTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tagTextFeirl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(tagTextFeild, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(61, 61, 61))
         );
         layout.setVerticalGroup(
@@ -92,7 +94,7 @@ public class CreateTag extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tagTextFeirl, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tagTextFeild, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(submitAndExitTags)
@@ -104,18 +106,40 @@ public class CreateTag extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tagTextFeirlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tagTextFeirlActionPerformed
+    private void tagTextFeildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tagTextFeildActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tagTextFeirlActionPerformed
+    }//GEN-LAST:event_tagTextFeildActionPerformed
 
     private void anotherTagButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anotherTagButtonActionPerformed
-        // TODO add your handling code here:
+        processNewTag(true);
     }//GEN-LAST:event_anotherTagButtonActionPerformed
 
     private void submitAndExitTagsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitAndExitTagsActionPerformed
         // TODO add your handling code here:
-        
+        processNewTag(false);
     }//GEN-LAST:event_submitAndExitTagsActionPerformed
+    /**
+     * @param anothaOne if true the user wants to create another tag, if false
+     * go back to the Project load screen
+     * @author Joseph Bermingham
+     */
+    private void processNewTag(boolean anothaOne) {
+        if (anothaOne) {
+            //Tags tag = new Tags(this.tagNameTextField.getText(),this.tagTextFeild.getText(),"blue");
+            Main.mainObj.projectObj.addTag(this.tagNameTextField.getText(), this.tagTextFeild.getText(), "blue");
+            Main.mainObj.createTag.setVisible(false);
+            Main.mainObj.createTag.tagNameTextField.setText("");
+            Main.mainObj.createTag.tagTextFeild.setText("");
+            Main.mainObj.createTag.setVisible(true);
+
+        } else {
+            Main.mainObj.projectObj.addTag(this.tagNameTextField.getText(), this.tagTextFeild.getText(), "blue");
+            Main.mainObj.createTag.setVisible(false);
+            Main.mainObj.createTag.tagNameTextField.setText("");
+            Main.mainObj.createTag.tagTextFeild.setText("");
+            Main.mainObj.projectLoad.setVisible(true);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -158,6 +182,6 @@ public class CreateTag extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton submitAndExitTags;
     private javax.swing.JTextField tagNameTextField;
-    private javax.swing.JTextField tagTextFeirl;
+    private javax.swing.JTextField tagTextFeild;
     // End of variables declaration//GEN-END:variables
 }

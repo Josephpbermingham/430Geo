@@ -3,6 +3,7 @@ package newvivo.code;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import newvivo.Screens.Main;
 import newvivo.code.*;
 
 public class Project {
@@ -28,6 +29,7 @@ public class Project {
         System.out.println(path);
         this.projectFolder = new File(path);
         this.projectPath = path;
+        this.tags = new ArrayList<Tags>();
         this.textFiles = new ArrayList<Document>();
         //adds all of the paths to textfiles to textfile, this is prolly not what we want
         //https://docs.oracle.com/javase/7/docs/api/java/io/File.html
@@ -81,7 +83,9 @@ public class Project {
 
     public boolean addTag(String tagName, String tagContent, String tagColor) {
         Tags newTag = new Tags(tagName, tagContent, tagColor);
-        tags.add(newTag);
+        Project projObj = Main.mainObj.getProjectObj();
+        projObj.tags.add(newTag);
+        Main.mainObj.setProjectObj(projObj);
         return true;
 
     }

@@ -32,6 +32,7 @@ public class ProjectLoad extends javax.swing.JFrame {
         openWordDocBTN = new javax.swing.JButton();
         viewTagsBTN = new javax.swing.JButton();
         viewTagStatsBTN = new javax.swing.JButton();
+        createNewTagBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +52,13 @@ public class ProjectLoad extends javax.swing.JFrame {
 
         viewTagStatsBTN.setText("Check Tag Statistics of File(s)");
 
+        createNewTagBTN.setText("Create New Tag");
+        createNewTagBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createNewTagBTNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -58,21 +66,25 @@ public class ProjectLoad extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(96, 96, 96)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(openWordDocBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(viewTagsBTN, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                    .addComponent(viewTagStatsBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(createNewTagBTN, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(openWordDocBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(viewTagsBTN, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                        .addComponent(viewTagStatsBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addComponent(openWordDocBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addComponent(createNewTagBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(viewTagsBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addGap(30, 30, 30)
                 .addComponent(viewTagStatsBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+                .addGap(45, 45, 45))
         );
 
         pack();
@@ -85,6 +97,13 @@ public class ProjectLoad extends javax.swing.JFrame {
     private void viewTagsBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTagsBTNActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_viewTagsBTNActionPerformed
+
+    private void createNewTagBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewTagBTNActionPerformed
+        Main.mainObj.createTag.setVisible(true);
+        Main.mainObj.projectLoad.setVisible(false);
+
+
+    }//GEN-LAST:event_createNewTagBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,6 +138,7 @@ public class ProjectLoad extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton createNewTagBTN;
     private javax.swing.JButton openWordDocBTN;
     private javax.swing.JButton viewTagStatsBTN;
     private javax.swing.JButton viewTagsBTN;
