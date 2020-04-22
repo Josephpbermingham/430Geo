@@ -3,7 +3,7 @@ package newvivo.code;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
-import newvivo.code.Tags;
+import newvivo.code.*;
 
 public class Project {
 
@@ -65,7 +65,7 @@ public class Project {
 
         int index = 0;
         int toRemove = -1;
-        for (Documents d : textFiles) {
+        for (Documents d : this.textFiles) {
             if (d.getFileTitle().equals(title)) {
                 toRemove = index;
             }
@@ -110,13 +110,15 @@ public class Project {
         try {
             FileWriter fileWriter = new FileWriter(fileName);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            for (Document tf : textFiles) {
-                bufferedWriter.write(tf.getpath() + "," + tf.getFileTitle() + ","tf.getpath() + "," + tf.getContent() + "\n";
+
+            for (Document tf : this.textFiles) {
+                bufferedWriter.write(tf.getPath() + "---" + tf.getFileTitle() + "---" + tf.getPath()+ "---" + tf.getContent() + "\n");
             }
             bufferedWriter.write(".\n");
             for (Tags t : tags) {
-                bufferedWriter.write(t.getName() + "," + t.getContent() + "," + t.getColor() + "\n");
+                bufferedWriter.write(t.getName() + "---" + t.getContent() + "---" + t.getColor() + "\n");
             }
+
             bufferedWriter.close();
         } catch (IOException ex) {
             System.out.println("Error writing to file");
@@ -125,7 +127,7 @@ public class Project {
     }
 
     public void listFiles() {
-        for (String a : this.textFiles) {
+        for (Document a : this.textFiles) {
             System.out.println(a);
         }
     }
