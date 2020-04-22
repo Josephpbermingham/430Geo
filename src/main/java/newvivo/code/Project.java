@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import newvivo.code.Tags;
 
-
 public class Project {
 
     private ArrayList<Document> textFiles;
@@ -13,10 +12,10 @@ public class Project {
     private String projectPath;
     private File projectFolder;
 
-    Project(){
-      this.textFiles = new ArrayList<Document>();
-      this.tags = new ArrayList<Tags>();
-      //this.projectPath = TBD;
+    Project() {
+        this.textFiles = new ArrayList<Document>();
+        this.tags = new ArrayList<Tags>();
+        //this.projectPath = TBD;
 
     }
 
@@ -48,9 +47,9 @@ public class Project {
 
     public boolean addDocument(String path) {
         //parses doc name from path for DOC
-        String[] arrpath = path.split("\\\\",0);
-        String filename = arrpath[arrpath.length-1];
-        
+        String[] arrpath = path.split("\\\\", 0);
+        String filename = arrpath[arrpath.length - 1];
+
         try {
             textFiles.add(new Document(this.projectPath, filename));
         } catch (FileNotFoundException ex) {
@@ -65,17 +64,19 @@ public class Project {
     public boolean RemoveDocument(String title) {
 
         int index = 0;
-        int toRemove= -1;
-        for(Documents d: textFiles){
-             if(d.getFileTitle().equals(title)){toRemove=index;}
-             index++;
+        int toRemove = -1;
+        for (Documents d : textFiles) {
+            if (d.getFileTitle().equals(title)) {
+                toRemove = index;
+            }
+            index++;
         }
-        if(toRemove!=-1){
-           tags.remove(toRemove); 
-           return true;
+        if (toRemove != -1) {
+            tags.remove(toRemove);
+            return true;
         }
         return false;
-   
+
     }
 
     public boolean addTag(String tagName, String tagContent, String tagColor) {
@@ -86,16 +87,18 @@ public class Project {
     }
 
     public boolean removeTag(String tagContent) {
-        
+
         int index = 0;
-        int toRemove= -1;
-        for(Tags t: tags){
-             if(t.getContent().equals(tagContent)){toRemove=index;}
-             index++;
+        int toRemove = -1;
+        for (Tags t : tags) {
+            if (t.getContent().equals(tagContent)) {
+                toRemove = index;
+            }
+            index++;
         }
-        if(toRemove!=-1){
-           tags.remove(toRemove); 
-           return true;
+        if (toRemove != -1) {
+            tags.remove(toRemove);
+            return true;
         }
         return false;
     }
@@ -107,16 +110,23 @@ public class Project {
         try {
             FileWriter fileWriter = new FileWriter(fileName);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            for(Document tf: textFiles){ bufferedWriter.write(tf.getpath() + "," + tf.getFileTitle() + ","tf.getpath() + "," + tf.getContent() + "\n"; }
+            for (Document tf : textFiles) {
+                bufferedWriter.write(tf.getpath() + "," + tf.getFileTitle() + ","tf.getpath() + "," + tf.getContent() + "\n";
+            }
             bufferedWriter.write(".\n");
-            for(Tags t: tags){ bufferedWriter.write(t.getName() + "," + t.getContent() + "," + t.getColor() + "\n"); }
+            for (Tags t : tags) {
+                bufferedWriter.write(t.getName() + "," + t.getContent() + "," + t.getColor() + "\n");
+            }
             bufferedWriter.close();
+        } catch (IOException ex) {
+            System.out.println("Error writing to file");
         }
-        catch (IOException ex) { System.out.println("Error writing to file"); }
         return true;
     }
 
     public void listFiles() {
-        for (String a : this.textFiles){System.out.println(a);}     
+        for (String a : this.textFiles) {
+            System.out.println(a);
+        }
     }
 }
