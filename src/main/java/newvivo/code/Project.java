@@ -160,7 +160,7 @@ public class Project {
         try {
             FileWriter fileWriter = new FileWriter(fileName);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            for(Document tf: textFiles){ bufferedWriter.write(tf.getpath() + "---" + tf.getFileTitle() + "---" + tf.getContent() + "\n"); }
+            for(Document tf: textFiles){ bufferedWriter.write(tf.getPath() + "---" + tf.getFileTitle() + "---" + tf.getContent() + "\n"); }
             bufferedWriter.write("+++\n");
             for(Tags t: tags){ bufferedWriter.write(t.getName() + "---" + t.getContent() + "---" + t.getColor() + "\n"); }
             bufferedWriter.close();
