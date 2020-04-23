@@ -39,15 +39,18 @@ public class XMLParse {
             System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
             NodeList nodeList = doc.getElementsByTagName("TagData");
             // nodeList is not iterable, so we are using for loop  
-            
+
             for (int itr = 0; itr < nodeList.getLength(); itr++) {
                 Node node = nodeList.item(itr);
                 System.out.println("\nNode Name :" + node.getNodeName());
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) node;
                     Tags tag = new Tags(eElement.getElementsByTagName("TagName").item(0).getTextContent(),
-                                        eElement.getElementsByTagName("TagName").item(0).getTextContent(),
-                                        eElement.getElementsByTagName("TagName").item(0).getTextContent());
+                            eElement.getElementsByTagName("TagName").item(0).getTextContent(),
+                            eElement.getElementsByTagName("TagName").item(0).getTextContent());
+                    Main.mainObj.projectObj.addTag(eElement.getElementsByTagName("TagName").item(0).getTextContent(),
+                            eElement.getElementsByTagName("TagName").item(0).getTextContent(),
+                            eElement.getElementsByTagName("TagName").item(0).getTextContent());
                     System.out.println("Tag Name: " + eElement.getElementsByTagName("TagName").item(0).getTextContent());
                     System.out.println("Tag Text: " + eElement.getElementsByTagName("TaggedText").item(0).getTextContent());
                     //System.out.println("TagColor: "+ eElement.getElementsByTagName("TagColor").item(0).getTextContent()); 

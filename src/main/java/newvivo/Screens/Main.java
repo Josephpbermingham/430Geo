@@ -25,7 +25,7 @@ public class Main {
     StartScreen startScreen;
     ProjectLoad projectLoad;
     CreateTag createTag;
-    Project projectObj;
+    public Project projectObj;//Created when you select a project path
    
    
 
