@@ -136,10 +136,10 @@ public class Project {
             bufferedReader.close();
 
         } catch (FileNotFoundException ex) {//creates projectData.txt if it doesn't already exist
-            String fileName = "projectData.txt";
+            String fn = "projectData.txt";
 
             try {
-               FileWriter fileWriter = new FileWriter(fileName);
+               FileWriter fileWriter = new FileWriter(fn);
                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
                bufferedWriter.write("\n");
                bufferedWriter.close();
