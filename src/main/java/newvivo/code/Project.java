@@ -174,12 +174,13 @@ public class Project {
             System.out.println(a);
         }     
     }
-<<<<<<< HEAD
 
-    String getPath() {
+
+    public String getPath() {
       //To change body of generated methods, choose Tools | Templates.
+      return this.projectPath;
     }
 }
-=======
-}
->>>>>>> 35896af80034a27b46d48950f6c9d4e7eef61cef
+
+
+

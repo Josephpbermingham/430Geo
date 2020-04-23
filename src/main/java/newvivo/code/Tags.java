@@ -6,6 +6,8 @@
 package newvivo.code;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -38,7 +40,8 @@ public class Tags {
     /**
      * @param projectPath the path into the project folder needs to be sent from
      * the GUI
-     * @param projectPath the path to this projects folder, inside the projects folder
+     * @param projectPath the path to this projects folder, inside the projects
+     * folder
      * @param tagName the name that this tag should go by.
      * @param taggedText the text content that this tag should be looking for
      * @author Joseph Bermingham
@@ -69,8 +72,11 @@ public class Tags {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource domSource = new DOMSource(document);
-            StreamResult streamResult = new StreamResult(System.out);
-//new File(xmlFilePath)
+            File outputFile = new File("./tags");
+
+            StreamResult streamResult = new StreamResult();
+            FileWriter myWriter = new FileWriter(outputFile.getPath());
+
             // If you use
             // StreamResult result = new StreamResult(System.out);
             // the output will be pushed to the standard output ...
@@ -79,7 +85,7 @@ public class Tags {
 
             System.out.println("Done creating XML File");
 
-        } catch (ParserConfigurationException | TransformerException pce) {
+        } catch (ParserConfigurationException | TransformerException | IOException pce) {
             pce.printStackTrace();
             return false;
         }
