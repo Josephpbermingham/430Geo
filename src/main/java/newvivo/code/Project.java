@@ -144,7 +144,7 @@ public class Project {
                bufferedWriter.write("\n");
                bufferedWriter.close();
             }
-            catch (IOException ex) { System.out.println("Error writing to file"); return false; }
+            catch (IOException exe) { System.out.println("Error writing to file"); return false; }
         } catch (IOException ex) {
             System.out.println("Error reading file");
             return false;
