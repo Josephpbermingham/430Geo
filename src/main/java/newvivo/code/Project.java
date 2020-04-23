@@ -67,7 +67,7 @@ public class Project {
 
         int index = 0;
         int toRemove= -1;
-        for(Documents d: textFiles){
+        for(Document d: textFiles){
              if(d.getFileTitle().equals(title)){toRemove=index;}
              index++;
         }
