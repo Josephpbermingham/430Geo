@@ -170,9 +170,9 @@ public class Project {
     }
 
     public void listFiles() {
-        for (String a : this.textFiles){
-            System.out.println(a);
-        }     
+        for (Document a : this.textFiles){
+            System.out.println(a.getFileTitle());
+        }      
     }
 
 
