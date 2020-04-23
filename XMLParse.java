@@ -19,7 +19,7 @@ public class XMLParse {
     public void Parse(){  
         try   {  
             //creating a constructor of file class and parsing an XML file  
-            File file = new File("C:\\Users\\Jazeb R\\Documents\\Senior Year\\CPSC 430\\item1.xml");  
+            File file = new File(Main.mainObject.projectObj.getPath());  
             //an instance of factory that gives a document builder  
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();  
             //an instance of builder to parse the specified xml file  
