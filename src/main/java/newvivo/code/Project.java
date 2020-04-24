@@ -2,8 +2,6 @@ package newvivo.code;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
-import newvivo.code.Tags;
 
 
 public class Project {
@@ -102,7 +100,7 @@ public class Project {
     }
     
     public boolean populate(String path){ //reads projectData.txt to fill saved project docs and tags
-        String fileName = "projectData.txt"
+        String fileName = "projectData.txt";
         String line = null;
         boolean tf = true;
 
@@ -136,7 +134,7 @@ public class Project {
             bufferedReader.close();
 
         } catch (FileNotFoundException ex) {//creates projectData.txt if it doesn't already exist
-            String fileName = "projectData.txt";
+            fileName = "projectData.txt";
 
             try {
                FileWriter fileWriter = new FileWriter(fileName);
@@ -144,8 +142,8 @@ public class Project {
                bufferedWriter.write("\n");
                bufferedWriter.close();
             }
-            catch (IOException ex) { System.out.println("Error writing to file"); return false; }
-        } catch (IOException ex) {
+            catch (IOException exept) { System.out.println("Error writing to file"); return false; }
+        } catch (IOException exept) {
             System.out.println("Error reading file");
             return false;
         }
@@ -160,7 +158,9 @@ public class Project {
         try {
             FileWriter fileWriter = new FileWriter(fileName);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            for(Document tf: textFiles){ bufferedWriter.write(tf.getpath() + "---" + tf.getFileTitle() + "---" + tf.getContent() + "\n"; }
+            for(Document tf: textFiles){
+                bufferedWriter.write(tf.getpath() + "---" + tf.getFileTitle() + "---" + tf.getContent() + "\n"; 
+            }
             bufferedWriter.write("+++\n");
             for(Tags t: tags){ bufferedWriter.write(t.getName() + "---" + t.getContent() + "---" + t.getColor() + "\n"); }
             bufferedWriter.close();
