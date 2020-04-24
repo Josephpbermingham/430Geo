@@ -1,0 +1,56 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT License. -->
+<!-- This file shows how to design a first-run page that provides a welcome screen to the user about the features of the add-in. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!--During development turn off caching-->
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+	
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NewVivo Task Pane Add-in</title>
+
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+
+    <!-- For more information on Office UI Fabric, visit https://developer.microsoft.com/fabric. -->
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.6.1/css/fabric.min.css"/>
+
+    <!-- Template styles -->
+    <link href="taskpane.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="ms-font-m ms-welcome ms-Fabric">
+    <header class="ms-welcome__header ms-bgColor-neutralLighter">
+        <img width="300" height="70" src="../../assets/logo-filled.png" alt="NewVivo" title="NewVivo" />
+        <h1 class="ms-font-su">Welcome</h1>
+    </header>
+    <section id="sideload-msg" class="ms-welcome__main">
+        <h2 class="ms-font-xl">Please sideload your add-in to see app body.</h2>
+    </section>
+    <main id="app-body" class="ms-welcome__main" style="display: none;">
+		<h2 class="ms-font-xl"> Create a Tag: </h2>
+		<input type="text" id="new-tag" name="new-tag" placeholder="Enter a new Tag here"><br>
+		<button class="ms-Button" id="create-tag">Create New Tag</button>
+        <h2 class="ms-font-xl"> Apply a tag to the selected text: </h2>
+        <select id="tag">
+			<option value="-Select a Tag-">-Select a Tag-</option>
+			<!-- <option value="sampleTag1">Sample Tag 1</option>
+			<option value="sampleTag2">Sample Tag 2</option>
+			<option value="sampleTag3">Sample Tag 3</option> -->
+		</select>
+		<br>
+		<button class="ms-Button" id="tag-it">Tag it!</button>
+		<h4 class="ms-font-m" id="output-msg"></h4>
+		<br>
+    </main>
+</body>
+
+</html>
