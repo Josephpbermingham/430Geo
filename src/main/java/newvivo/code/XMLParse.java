@@ -26,7 +26,7 @@ public class XMLParse {
      * @author Jazeb R
      * @return an array list of tags
      */
-    public ArrayList<Tags> Parse(String arg) {
+    public void Parse(String arg) {
         try {
             //creating a constructor of file class and parsing an XML file  
             File file = new File("./" + arg);
@@ -46,11 +46,11 @@ public class XMLParse {
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) node;
                     Tags tag = new Tags(eElement.getElementsByTagName("TagName").item(0).getTextContent(),
-                            eElement.getElementsByTagName("TagName").item(0).getTextContent(),
                             eElement.getElementsByTagName("TagName").item(0).getTextContent());
+                    
                     Main.mainObj.projectObj.addTag(eElement.getElementsByTagName("TagName").item(0).getTextContent(),
-                            eElement.getElementsByTagName("TagName").item(0).getTextContent(),
                             eElement.getElementsByTagName("TagName").item(0).getTextContent());
+                    
                     System.out.println("Tag Name: " + eElement.getElementsByTagName("TagName").item(0).getTextContent());
                     System.out.println("Tag Text: " + eElement.getElementsByTagName("TaggedText").item(0).getTextContent());
                     //System.out.println("TagColor: "+ eElement.getElementsByTagName("TagColor").item(0).getTextContent()); 
