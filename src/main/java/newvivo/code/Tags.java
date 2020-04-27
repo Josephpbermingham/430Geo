@@ -29,24 +29,21 @@ public class Tags {
 
     String tagContent;
     String tagName;
-    String tagColor;
+    String tagColor;//too much effort on the word add in side
 
-    public Tags(String name, String content, String color) {
+    public Tags(String name, String content) {
         tagName = name;
         tagContent = content;
-        tagColor = color;
     }
 
     /**
      * @param projectPath the path into the project folder needs to be sent from
      * the GUI
-     * @param projectPath the path to this projects folder, inside the projects
-     * folder
      * @param tagName the name that this tag should go by.
      * @param taggedText the text content that this tag should be looking for
      * @author Joseph Bermingham
      */
-    public boolean writeTagToFile(String projectPath, String tagName, String taggedText) {
+    public static boolean writeTagToFile(String projectPath, String tagName, String taggedText) {
         try {
             DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
 
@@ -72,10 +69,18 @@ public class Tags {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource domSource = new DOMSource(document);
-            File outputFile = new File("./tags");
+            File file = new File(Main.mainObj.projectObj.getPath() + "/" + tagName + ".xml");
+            boolean exists = file.exists();
+            try {
+                if (!exists) {
+                    file.createNewFile();
+                }
+            }catch(IOException ex){
+                System.out.println(ex);
+                System.out.println("Shit broke yo");
 
-            StreamResult streamResult = new StreamResult();
-            FileWriter myWriter = new FileWriter(outputFile.getPath());
+            }
+            StreamResult streamResult = new StreamResult(file);
 
             // If you use
             // StreamResult result = new StreamResult(System.out);
@@ -85,7 +90,7 @@ public class Tags {
 
             System.out.println("Done creating XML File");
 
-        } catch (ParserConfigurationException | TransformerException | IOException pce) {
+        } catch (ParserConfigurationException | TransformerException pce) {
             pce.printStackTrace();
             return false;
         }

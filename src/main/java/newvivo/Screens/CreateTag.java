@@ -124,16 +124,18 @@ public class CreateTag extends javax.swing.JFrame {
      * @author Joseph Bermingham
      */
     private void processNewTag(boolean anothaOne) {
+        String tagName = this.tagNameTextField.getText();
+        String tagText = this.tagTextFeild.getText();
+        
         if (anothaOne) {
-            //Tags tag = new Tags(this.tagNameTextField.getText(),this.tagTextFeild.getText(),"blue");
-            Main.mainObj.projectObj.addTag(this.tagNameTextField.getText(), this.tagTextFeild.getText(), "blue");
+            Main.mainObj.projectObj.addTag(tagName, tagText);
             Main.mainObj.createTag.setVisible(false);
             Main.mainObj.createTag.tagNameTextField.setText("");
             Main.mainObj.createTag.tagTextFeild.setText("");
             Main.mainObj.createTag.setVisible(true);
 
         } else {
-            Main.mainObj.projectObj.addTag(this.tagNameTextField.getText(), this.tagTextFeild.getText(), "blue");
+            Main.mainObj.projectObj.addTag(tagName, tagText);
             Main.mainObj.createTag.setVisible(false);
             Main.mainObj.createTag.tagNameTextField.setText("");
             Main.mainObj.createTag.tagTextFeild.setText("");

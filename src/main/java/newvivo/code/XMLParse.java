@@ -24,7 +24,7 @@ public class XMLParse {
     /**
      * @param arg the string name of the file.
      * @author Jazeb R
-     * @return an arraylist of tags
+     * @return an array list of tags
      */
     public ArrayList<Tags> Parse(String arg) {
         try {

@@ -2,6 +2,7 @@ package newvivo.code;
 
 import java.io.*;
 import java.util.ArrayList;
+import newvivo.Screens.Main;
 
 public class Project {
 
@@ -24,8 +25,9 @@ public class Project {
     public Project(String path) {
         this.projectFolder = new File(path);
         this.projectPath = path;
-        populate(path);
+        // populate(path);
         this.textFiles = new ArrayList<Document>();
+        this.tags = new ArrayList<Tags>();
         //adds all of the paths to textfiles to textfile, this is prolly not what we want
         //https://docs.oracle.com/javase/7/docs/api/java/io/File.html
         String[] contents = this.projectFolder.list();
@@ -76,11 +78,11 @@ public class Project {
 
     }
 
-    public boolean addTag(String tagName, String tagContent, String tagColor) {
-        Tags newTag = new Tags(tagName, tagContent, tagColor);
-        tags.add(newTag);
+    public boolean addTag(String tagName, String tagContent) {
+        Tags newTag = new Tags(tagName, tagContent);
+        Main.mainObj.projectObj.tags.add(newTag);
+        Tags.writeTagToFile("./",tagName,tagContent);
         return true;
-
     }
 
     public boolean removeTag(String tagContent) {
@@ -124,7 +126,7 @@ public class Project {
                 } else if (obj.length < 2) {//in case it reads blank file somehow
 
                 } else {
-                    Tags tempt = new Tags(obj[0], obj[1], obj[2]);
+                    Tags tempt = new Tags(obj[0], obj[1]);
                     this.tags.add(tempt);
                 }
 
@@ -184,5 +186,9 @@ public class Project {
     public String getPath() {
         //To change body of generated methods, choose Tools | Templates.
         return this.projectPath;
+    }
+
+    public ArrayList<Tags> getTags() {
+        return this.tags;
     }
 }

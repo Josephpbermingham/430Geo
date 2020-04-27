@@ -1,4 +1,3 @@
-package com.journaldev.files;
 
 import java.io.File;
 import java.io.FileInputStream;

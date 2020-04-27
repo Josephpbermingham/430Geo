@@ -27,11 +27,9 @@
               <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="createNewTagBTN" pref="195" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="openWordDocBTN" alignment="0" max="32767" attributes="0"/>
-                      <Component id="viewTagsBTN" alignment="0" pref="195" max="32767" attributes="0"/>
-                      <Component id="viewTagStatsBTN" alignment="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="openWordDocBTN" alignment="0" max="32767" attributes="0"/>
+                  <Component id="viewTagsBTN" alignment="0" pref="195" max="32767" attributes="0"/>
+                  <Component id="viewTagStatsBTN" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="96" max="32767" attributes="0"/>
           </Group>

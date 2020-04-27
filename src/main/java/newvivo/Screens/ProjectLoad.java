@@ -6,6 +6,7 @@
 package newvivo.Screens;
 
 import javax.swing.UIManager;
+import newvivo.wordAddIn.StartAddin;
 
 /**
  *
@@ -91,11 +92,13 @@ public class ProjectLoad extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void openWordDocBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openWordDocBTNActionPerformed
-        // TODO add your handling code here:
+        // Opens a blank word document with the add in open.
+        StartAddin.start();
     }//GEN-LAST:event_openWordDocBTNActionPerformed
 
     private void viewTagsBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTagsBTNActionPerformed
-        // TODO add your handling code here:
+       Main.mainObj.projectLoad.setVisible(false);
+       Main.mainObj.viewTags.setVisible(true);
     }//GEN-LAST:event_viewTagsBTNActionPerformed
 
     private void createNewTagBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewTagBTNActionPerformed
