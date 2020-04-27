@@ -122,7 +122,7 @@ public class Tags {
     }
 
     public static void main(String args[]) {
-        Tags tags = new Tags("This", "This", "This");
+       // Tags tags = new Tags("This", "This", "This");
         tags.writeTagToFile("This", "This", "This");
     }
 }
