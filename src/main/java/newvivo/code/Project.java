@@ -102,7 +102,36 @@ public class Project {
         return false;
     }
 
-    public boolean populate(String path) { //reads projectData.txt to fill saved project docs and tags
+    public boolean seachTag(Tags tag){//searches each doc for tag content and prints doc title
+         String tagC = tag.getContent();
+         String[] arrTag = tagC.split(" ",0);
+         int contentLen = arrTag.length;
+         String[] arrDoc;
+         int indexCounter = 0;
+         int matchCounter = 0;
+         boolean match;
+         for(Document d: textFiles){
+            match = false;
+            indexCounter = 0;
+            arrDoc = d.getContent().split(" ",0);
+            for(String s: arrDoc){
+                  matchCounter = 0;
+                  if(s.equals(arrTag[0])&&(arrDoc.length - indexCounter)<=contentLen){
+                        for(int i=0;i<contentLen;i++){
+                              if(arrDoc[indexCounter].equals(arrTag[i])){matchCounter++;}
+                        }
+                  
+                  }
+    
+                  if(matchCounter==contentLen){ System.out.println(d.getFileTitle()); }
+                  indexCounter++;
+            }
+         } 
+         return false;
+    }
+    
+    public boolean populate(String path){ //reads projectData.txt to fill saved project docs and tags
+
         String fileName = "projectData.txt";
         String line = null;
         boolean tf = true;
@@ -180,7 +209,8 @@ public class Project {
     public void listFiles() {
         for (Document a : this.textFiles) {
             System.out.println(a.getFileTitle());
-        }
+
+        }     
     }
 
     public String getPath() {
