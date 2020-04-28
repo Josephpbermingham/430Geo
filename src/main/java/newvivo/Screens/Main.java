@@ -26,6 +26,7 @@ public class Main {
     ProjectLoad projectLoad;
     CreateTag createTag;
     ViewTags viewTags;
+    StatsScreen statsScreen;
     public Project projectObj;//Created when you select a project path
    
    
@@ -43,6 +44,7 @@ public class Main {
         projectLoad = new ProjectLoad();
         createTag = new CreateTag();     
         viewTags = new ViewTags();
+        statsScreen = new StatsScreen();
         
     }
 

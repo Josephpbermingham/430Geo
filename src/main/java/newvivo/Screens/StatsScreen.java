@@ -5,6 +5,8 @@
  */
 package newvivo.Screens;
 
+import newvivo.code.Tags;
+
 /**
  *
  * @author Joseph Bermingham
@@ -80,10 +82,19 @@ public class StatsScreen extends javax.swing.JFrame {
 
     private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
         // TODO add your handling code here:
+        Main.mainObj.statsScreen.refreshStats();
     }//GEN-LAST:event_refreshBtnActionPerformed
+    public void refreshStats() {
+        Main.mainObj.statsScreen.statsDisplay.setText(null);
 
+        for (Tags tag : Main.mainObj.projectObj.getTags()) {
+            Main.mainObj.statsScreen.statsDisplay.append(Main.mainObj.projectObj.seachTag(tag));
+        }
+    }
     private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
         // TODO add your handling code here:
+        Main.mainObj.statsScreen.setVisible(false);
+        Main.mainObj.projectLoad.setVisible(true);
     }//GEN-LAST:event_returnBtnActionPerformed
 
     /**

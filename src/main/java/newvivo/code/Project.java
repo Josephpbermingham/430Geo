@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import newvivo.Screens.Main;
 import org.apache.commons.io.FileUtils;
 import newvivo.code.XMLParse;
+import org.apache.commons.lang3.StringUtils;
 
 public class Project {
 
@@ -119,36 +120,36 @@ public class Project {
         return false;
     }
 
-    public boolean seachTag(Tags tag) {//searches each doc for tag content and prints doc title
+    /**
+     * searches each doc for tag content and prints doc title
+     * @return 
+     * @param tag the tag that you are searching for?
+     * @author Will panack
+     */
+    public String seachTag(Tags tag) {
         String tagC = tag.getContent();
-        String[] arrTag = tagC.split(" ", 0);
-        int contentLen = arrTag.length;
-        String[] arrDoc;
-        int indexCounter = 0;
-        int matchCounter = 0;
+
         boolean match;
-        for (Document d : textFiles) {
+        String[] hitCount = new String[(Main.mainObj.projectObj.textFiles.size() * 2)];
+        int hitIndex = 0;
+        String returnString = tag.getName()+": "+tag.getContent()+"\n";
+        
+        for (Document d : Main.mainObj.projectObj.textFiles) {
             match = false;
-            indexCounter = 0;
-            arrDoc = d.getContent().split(" ", 0);
-            for (String s : arrDoc) {
-                matchCounter = 0;
-                if (s.equals(arrTag[0]) && (arrDoc.length - indexCounter) <= contentLen) {
-                    for (int i = 0; i < contentLen; i++) {
-                        if (arrDoc[indexCounter].equals(arrTag[i])) {
-                            matchCounter++;
-                        }
-                    }
+            //track file name
+            returnString+= d.getFileTitle()+":";
+            //track file's hit rate
+            String doc = d.getContent().toLowerCase();
+            String useTag = tagC.toLowerCase();
+            int temp = StringUtils.countMatches(doc, useTag);
+            returnString += "---"+temp+"\n";
 
-                }
+            hitCount[hitIndex] = String.valueOf(temp);
+            hitIndex++;
 
-                if (matchCounter == contentLen) {
-                    System.out.println(d.getFileTitle());
-                }
-                indexCounter++;
-            }
         }
-        return false;
+        return returnString;
+
     }
 
     public boolean populate(String path) { //reads projectData.txt to fill saved project docs and tags

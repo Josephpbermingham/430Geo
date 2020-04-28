@@ -54,6 +54,11 @@ public class ProjectLoad extends javax.swing.JFrame {
         });
 
         viewTagStatsBTN.setText("Check Tag Statistics of File(s)");
+        viewTagStatsBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewTagStatsBTNActionPerformed(evt);
+            }
+        });
 
         createNewTagBTN.setText("Create New Tag");
         createNewTagBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -139,6 +144,13 @@ public class ProjectLoad extends javax.swing.JFrame {
     private void openWordDocBTN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openWordDocBTN1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_openWordDocBTN1ActionPerformed
+
+    private void viewTagStatsBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTagStatsBTNActionPerformed
+        // TODO add your handling code here:
+        Main.mainObj.statsScreen.refreshStats();
+        Main.mainObj.statsScreen.setVisible(true);
+        Main.mainObj.projectLoad.setVisible(false);
+    }//GEN-LAST:event_viewTagStatsBTNActionPerformed
 
     /**
      * @param args the command line arguments
