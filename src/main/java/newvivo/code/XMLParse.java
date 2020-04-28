@@ -60,5 +60,6 @@ public class XMLParse {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 }
