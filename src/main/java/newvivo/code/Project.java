@@ -24,6 +24,9 @@ public class Project {
      */
     public Project(String path) {
         this.projectFolder = new File(path);
+        if(!this.projectFolder.exists()){
+            this.projectFolder.mkdir();
+        }
         this.projectPath = path;
         // populate(path);
         this.textFiles = new ArrayList<Document>();
