@@ -30,17 +30,18 @@ public class ProjectLoad extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        openWordDocBTN = new javax.swing.JButton();
+        addWordDoc = new javax.swing.JButton();
         viewTagsBTN = new javax.swing.JButton();
         viewTagStatsBTN = new javax.swing.JButton();
         createNewTagBTN = new javax.swing.JButton();
+        openWordDocBTN1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        openWordDocBTN.setText("Open Word Document");
-        openWordDocBTN.addActionListener(new java.awt.event.ActionListener() {
+        addWordDoc.setText("Add New Word Doc");
+        addWordDoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openWordDocBTNActionPerformed(evt);
+                addWordDocActionPerformed(evt);
             }
         });
 
@@ -60,6 +61,13 @@ public class ProjectLoad extends javax.swing.JFrame {
             }
         });
 
+        openWordDocBTN1.setText("Open Word Document");
+        openWordDocBTN1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openWordDocBTN1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -68,33 +76,35 @@ public class ProjectLoad extends javax.swing.JFrame {
                 .addGap(96, 96, 96)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(createNewTagBTN, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(openWordDocBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(viewTagsBTN, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                        .addComponent(viewTagStatsBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(addWordDoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewTagsBTN, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                    .addComponent(viewTagStatsBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(openWordDocBTN1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
-                .addComponent(openWordDocBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addComponent(openWordDocBTN1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(addWordDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addComponent(createNewTagBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(27, 27, 27)
                 .addComponent(viewTagsBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(viewTagStatsBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addGap(27, 27, 27))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void openWordDocBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openWordDocBTNActionPerformed
+    private void addWordDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addWordDocActionPerformed
         // Opens a blank word document with the add in open.
         StartAddin.start();
-    }//GEN-LAST:event_openWordDocBTNActionPerformed
+    }//GEN-LAST:event_addWordDocActionPerformed
 
     private void viewTagsBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTagsBTNActionPerformed
        Main.mainObj.projectLoad.setVisible(false);
@@ -107,6 +117,10 @@ public class ProjectLoad extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_createNewTagBTNActionPerformed
+
+    private void openWordDocBTN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openWordDocBTN1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_openWordDocBTN1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,8 +155,9 @@ public class ProjectLoad extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addWordDoc;
     private javax.swing.JButton createNewTagBTN;
-    private javax.swing.JButton openWordDocBTN;
+    private javax.swing.JButton openWordDocBTN1;
     private javax.swing.JButton viewTagStatsBTN;
     private javax.swing.JButton viewTagsBTN;
     // End of variables declaration//GEN-END:variables
