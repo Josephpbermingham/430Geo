@@ -5,8 +5,9 @@
  */
 package newvivo.Screens;
 
+import java.io.File;
+import javax.swing.JFileChooser;
 import javax.swing.UIManager;
-import newvivo.wordAddIn.StartAddin;
 
 /**
  *
@@ -102,13 +103,30 @@ public class ProjectLoad extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addWordDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addWordDocActionPerformed
-        // Opens a blank word document with the add in open.
-        StartAddin.start();
-    }//GEN-LAST:event_addWordDocActionPerformed
+// Opens a blank word document with the add in open.
+        // TODO add your handling code here:
+        final JFileChooser fc = new JFileChooser(System.getProperty("user.dir") + "/Projects");
+
+        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+        int returnVal = fc.showOpenDialog(this);
+        System.out.println(returnVal);
+        String newline = "\n";
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fc.getSelectedFile();          
+            System.out.println(file.getPath());
+            //create a new project from the chosen project directory,
+            Main.mainObj.projectObj.addDocument(file);
+
+        } else {
+            System.out.println("Open command canceled by user." + newline);
+        }    }//GEN-LAST:event_addWordDocActionPerformed
 
     private void viewTagsBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTagsBTNActionPerformed
-       Main.mainObj.projectLoad.setVisible(false);
-       Main.mainObj.viewTags.setVisible(true);
+        Main.mainObj.projectLoad.setVisible(false);
+        Main.mainObj.viewTags.refreshScreen();
+        Main.mainObj.viewTags.setVisible(true);
     }//GEN-LAST:event_viewTagsBTNActionPerformed
 
     private void createNewTagBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewTagBTNActionPerformed

@@ -22,14 +22,14 @@ import newvivo.Screens.Main;
 public class XMLParse {
 
     /**
-     * @param arg the string name of the file.
+     * @param arg the path to the file you want to parse
      * @author Jazeb R
      * @return an array list of tags
      */
-    public void Parse(String arg) {
+    public Tags Parse(String path) {
         try {
             //creating a constructor of file class and parsing an XML file  
-            File file = new File("./" + arg);
+            File file = new File(path);
             //an instance of factory that gives a document builder  
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             //an instance of builder to parse the specified xml file  
@@ -45,15 +45,16 @@ public class XMLParse {
                 System.out.println("\nNode Name :" + node.getNodeName());
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) node;
-                    Tags tag = new Tags(eElement.getElementsByTagName("TagName").item(0).getTextContent(),
-                            eElement.getElementsByTagName("TagName").item(0).getTextContent());
-                    
-                    Main.mainObj.projectObj.addTag(eElement.getElementsByTagName("TagName").item(0).getTextContent(),
-                            eElement.getElementsByTagName("TagName").item(0).getTextContent());
+                    return (new Tags(eElement.getElementsByTagName("TagName").item(0).getTextContent(),
+                            eElement.getElementsByTagName("TagName").item(0).getTextContent()));
+                    /*
+                            Main.mainObj.projectObj.addTag(eElement.getElementsByTagName("TagName").item(0).getTextContent(),
+                            eElement.getElementsByTagName("TaggedText").item(0).getTextContent());
                     
                     System.out.println("Tag Name: " + eElement.getElementsByTagName("TagName").item(0).getTextContent());
                     System.out.println("Tag Text: " + eElement.getElementsByTagName("TaggedText").item(0).getTextContent());
                     //System.out.println("TagColor: "+ eElement.getElementsByTagName("TagColor").item(0).getTextContent()); 
+                     */
                 }
             }
         } catch (Exception e) {

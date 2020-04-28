@@ -5,19 +5,16 @@
  */
 package newvivo.Screens;
 
-import java.util.ArrayList;
-import newvivo.code.Tags;
-
 /**
  *
  * @author Joseph Bermingham
  */
-public class ViewTags extends javax.swing.JFrame {
+public class StatsScreen extends javax.swing.JFrame {
 
     /**
-     * Creates new form ViewTags
+     * Creates new form StatsScreen
      */
-    public ViewTags() {
+    public StatsScreen() {
         initComponents();
     }
 
@@ -30,12 +27,19 @@ public class ViewTags extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        refreshBtn = new javax.swing.JButton();
         returnBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tagDisplayArea = new javax.swing.JTextArea();
-        refreshBtn = new javax.swing.JButton();
+        statsDisplay = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        refreshBtn.setText("Refresh");
+        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBtnActionPerformed(evt);
+            }
+        });
 
         returnBtn.setText("Return");
         returnBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -44,63 +48,43 @@ public class ViewTags extends javax.swing.JFrame {
             }
         });
 
-        tagDisplayArea.setColumns(20);
-        tagDisplayArea.setRows(5);
-        jScrollPane1.setViewportView(tagDisplayArea);
-
-        refreshBtn.setText("Refresh Tags");
-        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshBtnActionPerformed(evt);
-            }
-        });
+        statsDisplay.setColumns(20);
+        statsDisplay.setRows(5);
+        jScrollPane1.setViewportView(statsDisplay);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(refreshBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(returnBtn)
-                .addGap(32, 32, 32))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 727, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(returnBtn)
-                    .addComponent(refreshBtn))
+                    .addComponent(refreshBtn)
+                    .addComponent(returnBtn))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
-        Main.mainObj.viewTags.setVisible(false);
-        Main.mainObj.projectLoad.setVisible(true);
-    }//GEN-LAST:event_returnBtnActionPerformed
-
     private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
         // TODO add your handling code here:
-        Main.mainObj.viewTags.refreshScreen();
     }//GEN-LAST:event_refreshBtnActionPerformed
 
-    public void refreshScreen() {
-        ArrayList<Tags> temp = Main.mainObj.projectObj.getTags();
-        Main.mainObj.viewTags.tagDisplayArea.setText(null);
-        Main.mainObj.viewTags.tagDisplayArea.append("Tag Title -- Tag contents\n");
-        for (Tags tag : temp) {
-            Main.mainObj.viewTags.tagDisplayArea.append(tag.getName() + " -- " + tag.getContent() + "\n");
-        }
-    }
+    private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_returnBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,20 +103,20 @@ public class ViewTags extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewTags.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StatsScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewTags.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StatsScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewTags.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StatsScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewTags.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StatsScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewTags().setVisible(true);
+                new StatsScreen().setVisible(true);
             }
         });
     }
@@ -141,6 +125,6 @@ public class ViewTags extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton refreshBtn;
     private javax.swing.JButton returnBtn;
-    private javax.swing.JTextArea tagDisplayArea;
+    private javax.swing.JTextArea statsDisplay;
     // End of variables declaration//GEN-END:variables
 }

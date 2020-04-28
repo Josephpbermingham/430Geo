@@ -5,6 +5,7 @@
  */
 package newvivo.code;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -24,10 +25,10 @@ public class Document {
     private String fileTitle;
 
     public Document(String projectPath, String fileTitle) throws FileNotFoundException, IOException {
-        this.fileTitle = fileTitle; 
-        path = projectPath+"\\"+fileTitle;
-        
-        XWPFDocument docx = new XWPFDocument(new FileInputStream(projectPath+"\\"+fileTitle));
+        this.fileTitle = fileTitle;
+        path = projectPath + "\\" + fileTitle;
+
+        XWPFDocument docx = new XWPFDocument(new FileInputStream(projectPath + "\\" + fileTitle));
 
         //using XWPFWordExtractor Class
         XWPFWordExtractor we = new XWPFWordExtractor(docx);
@@ -59,9 +60,9 @@ public class Document {
     }
 
     public static void main(String args[]) {
-        String path = System.getProperty("user.dir")+"\\Projects\\temp";
+        String path = System.getProperty("user.dir") + "\\Projects\\temp";
         try {
-            Document test = new Document(path,"TestResume.docx");
+            Document test = new Document(path, "TestResume.docx");
             System.out.println(test.getContent());
         } catch (IOException ex) {
             Logger.getLogger(Document.class.getName()).log(Level.SEVERE, null, ex);

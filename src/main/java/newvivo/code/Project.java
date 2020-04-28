@@ -3,6 +3,8 @@ package newvivo.code;
 import java.io.*;
 import java.util.ArrayList;
 import newvivo.Screens.Main;
+import org.apache.commons.io.FileUtils;
+import newvivo.code.XMLParse;
 
 public class Project {
 
@@ -24,7 +26,7 @@ public class Project {
      */
     public Project(String path) {
         this.projectFolder = new File(path);
-        if(!this.projectFolder.exists()){
+        if (!this.projectFolder.exists()) {
             this.projectFolder.mkdir();
         }
         this.projectPath = path;
@@ -37,7 +39,17 @@ public class Project {
         if (contents.length > 0) {
             for (String content : contents) {
                 try {
-                    this.textFiles.add(new Document(projectPath, content));
+                    //if its an xml add it to tags, if it isnt add it to documents
+                    if (content.contains(".xml")) {
+                        System.out.println(path + "\\" + content);
+                        XMLParse p = new XMLParse();
+                        this.tags.add(p.Parse(path + "\\" + content));
+                    } else if (content.contains(".docx")) {
+                        this.textFiles.add(new Document(projectPath, content));
+
+                    } else {
+                        System.out.println("unsupported file");
+                    }
                 } catch (FileNotFoundException ex) {
                     System.out.println("File Not found exception when initializing project\n" + ex);
                 } catch (IOException exept) {
@@ -47,13 +59,15 @@ public class Project {
         }
     }
 
-    public boolean addDocument(String path) {
+    public boolean addDocument(File srcFile) {
         //parses doc name from path for DOC
-        String[] arrpath = path.split("\\\\", 0);
-        String filename = arrpath[arrpath.length - 1];
+        //String[] arrpath = path.split("\\\\", 0);
 
+        //String filename = arrpath[arrpath.length - 1];
+        File destFile = new File(Main.mainObj.projectObj.projectPath + "/" + srcFile.getName());
         try {
-            textFiles.add(new Document(this.projectPath, filename));
+            FileUtils.copyFile(srcFile, destFile);
+            Main.mainObj.projectObj.textFiles.add(new Document(this.projectPath, srcFile.getName()));
         } catch (FileNotFoundException ex) {
             System.out.println("File Not found exception when initializing project\n" + ex);
         } catch (IOException exept) {
@@ -84,7 +98,7 @@ public class Project {
     public boolean addTag(String tagName, String tagContent) {
         Tags newTag = new Tags(tagName, tagContent);
         Main.mainObj.projectObj.tags.add(newTag);
-        Tags.writeTagToFile("./",tagName,tagContent);
+        Tags.writeTagToFile("./", tagName, tagContent);
         return true;
     }
 
@@ -105,35 +119,39 @@ public class Project {
         return false;
     }
 
-    public boolean seachTag(Tags tag){//searches each doc for tag content and prints doc title
-         String tagC = tag.getContent();
-         String[] arrTag = tagC.split(" ",0);
-         int contentLen = arrTag.length;
-         String[] arrDoc;
-         int indexCounter = 0;
-         int matchCounter = 0;
-         boolean match;
-         for(Document d: textFiles){
+    public boolean seachTag(Tags tag) {//searches each doc for tag content and prints doc title
+        String tagC = tag.getContent();
+        String[] arrTag = tagC.split(" ", 0);
+        int contentLen = arrTag.length;
+        String[] arrDoc;
+        int indexCounter = 0;
+        int matchCounter = 0;
+        boolean match;
+        for (Document d : textFiles) {
             match = false;
             indexCounter = 0;
-            arrDoc = d.getContent().split(" ",0);
-            for(String s: arrDoc){
-                  matchCounter = 0;
-                  if(s.equals(arrTag[0])&&(arrDoc.length - indexCounter)<=contentLen){
-                        for(int i=0;i<contentLen;i++){
-                              if(arrDoc[indexCounter].equals(arrTag[i])){matchCounter++;}
+            arrDoc = d.getContent().split(" ", 0);
+            for (String s : arrDoc) {
+                matchCounter = 0;
+                if (s.equals(arrTag[0]) && (arrDoc.length - indexCounter) <= contentLen) {
+                    for (int i = 0; i < contentLen; i++) {
+                        if (arrDoc[indexCounter].equals(arrTag[i])) {
+                            matchCounter++;
                         }
-                  
-                  }
-    
-                  if(matchCounter==contentLen){ System.out.println(d.getFileTitle()); }
-                  indexCounter++;
+                    }
+
+                }
+
+                if (matchCounter == contentLen) {
+                    System.out.println(d.getFileTitle());
+                }
+                indexCounter++;
             }
-         } 
-         return false;
+        }
+        return false;
     }
-    
-    public boolean populate(String path){ //reads projectData.txt to fill saved project docs and tags
+
+    public boolean populate(String path) { //reads projectData.txt to fill saved project docs and tags
 
         String fileName = "projectData.txt";
         String line = null;
@@ -213,7 +231,7 @@ public class Project {
         for (Document a : this.textFiles) {
             System.out.println(a.getFileTitle());
 
-        }     
+        }
     }
 
     public String getPath() {
