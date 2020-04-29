@@ -8,6 +8,8 @@ package newvivo.Screens;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.UIManager;
+import java.util.*;
+import java.io.*;
 
 /**
  *
@@ -143,6 +145,21 @@ public class ProjectLoad extends javax.swing.JFrame {
 
     private void openWordDocBTN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openWordDocBTN1ActionPerformed
         // TODO add your handling code here:
+                try {
+            System.out.println("Start");
+            ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/c", "cd \"My Office Add-in\" && npm start");
+            Process p = pb.start();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            System.out.println("end");
+
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
     }//GEN-LAST:event_openWordDocBTN1ActionPerformed
 
     private void viewTagStatsBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTagStatsBTNActionPerformed
