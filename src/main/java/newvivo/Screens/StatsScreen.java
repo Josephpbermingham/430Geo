@@ -5,6 +5,7 @@
  */
 package newvivo.Screens;
 
+
 import newvivo.code.Tags;
 
 /**
@@ -85,11 +86,13 @@ public class StatsScreen extends javax.swing.JFrame {
         Main.mainObj.statsScreen.refreshStats();
     }//GEN-LAST:event_refreshBtnActionPerformed
     public void refreshStats() {
-        Main.mainObj.statsScreen.statsDisplay.setText("Format is:\n Tag title: tag content \n document title---number of occurences\n\n");
+        Main.mainObj.statsScreen.statsDisplay.setText("\n Tag Name: tag content \n document title: number of occurences --- % of file\n\n");
 
         for (Tags tag : Main.mainObj.projectObj.getTags()) {
             Main.mainObj.statsScreen.statsDisplay.append(Main.mainObj.projectObj.seachTag(tag));
+            
         }
+        
     }
     private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
         // TODO add your handling code here:

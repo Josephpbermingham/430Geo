@@ -137,18 +137,18 @@ public class Project {
         for (Document d : Main.mainObj.projectObj.textFiles) {
             match = false;
             //track file name
-            returnString+= d.getFileTitle()+":";
+            returnString+= d.getFileTitle()+": ";
             //track file's hit rate
             String doc = d.getContent().toLowerCase();
             String useTag = tagC.toLowerCase();
             int temp = StringUtils.countMatches(doc, useTag);
-            returnString += "---"+temp+"\n";
-
+            returnString += temp+" --- ";
+            returnString += Stats.findStats(doc,useTag)+ "% of Document\n";
             hitCount[hitIndex] = String.valueOf(temp);
             hitIndex++;
 
         }
-        return returnString;
+        return returnString+"\n";
 
     }
 

@@ -75,6 +75,11 @@ public class NewProject extends javax.swing.JFrame {
 
     private void SubmitNewProjectNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitNewProjectNameActionPerformed
         // TODO add your handling code here:
+        File projectsFolder = new File(System.getProperty("user.dir")+"\\Projects");
+        if(!projectsFolder.exists()){
+            System.out.println("Creating projects folder at:"+System.getProperty("user.dir"));
+            projectsFolder.mkdir();
+        }
         String path = System.getProperty("user.dir")+"\\Projects\\"+newProjectName.getText();
         File dir = new File(path);
         boolean bool = dir.mkdir();
