@@ -44,7 +44,7 @@ public class CreateTag extends javax.swing.JFrame {
             }
         });
 
-        anotherTagButton.setText("Submit Tag and Create Another");
+        anotherTagButton.setText("Create Tag");
         anotherTagButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 anotherTagButtonActionPerformed(evt);
@@ -55,7 +55,7 @@ public class CreateTag extends javax.swing.JFrame {
 
         jLabel2.setText("Tag Text");
 
-        submitAndExitTags.setText("Submit Tag and return");
+        submitAndExitTags.setText("Return");
         submitAndExitTags.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitAndExitTagsActionPerformed(evt);
@@ -70,10 +70,10 @@ public class CreateTag extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(anotherTagButton, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(submitAndExitTags))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(submitAndExitTags))
+                        .addComponent(anotherTagButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -92,15 +92,15 @@ public class CreateTag extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tagNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tagTextFeild, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(submitAndExitTags)
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addComponent(anotherTagButton)
-                .addGap(34, 34, 34))
+                .addGap(26, 26, 26)
+                .addComponent(submitAndExitTags)
+                .addContainerGap())
         );
 
         pack();
@@ -126,16 +126,17 @@ public class CreateTag extends javax.swing.JFrame {
     private void processNewTag(boolean anothaOne) {
         String tagName = this.tagNameTextField.getText();
         String tagText = this.tagTextFeild.getText();
-        
+
         if (anothaOne) {
-            Main.mainObj.projectObj.addTag(tagName, tagText);
-            Main.mainObj.createTag.setVisible(false);
-            Main.mainObj.createTag.tagNameTextField.setText("");
-            Main.mainObj.createTag.tagTextFeild.setText("");
-            Main.mainObj.createTag.setVisible(true);
+            if (!tagName.isEmpty() && !tagText.isEmpty()) {
+                Main.mainObj.projectObj.addTag(tagName, tagText);
+                Main.mainObj.createTag.setVisible(false);
+                Main.mainObj.createTag.tagNameTextField.setText("");
+                Main.mainObj.createTag.tagTextFeild.setText("");
+                Main.mainObj.createTag.setVisible(true);
+            }
 
         } else {
-            Main.mainObj.projectObj.addTag(tagName, tagText);
             Main.mainObj.createTag.setVisible(false);
             Main.mainObj.createTag.tagNameTextField.setText("");
             Main.mainObj.createTag.tagTextFeild.setText("");

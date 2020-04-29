@@ -85,7 +85,7 @@ public class StatsScreen extends javax.swing.JFrame {
         Main.mainObj.statsScreen.refreshStats();
     }//GEN-LAST:event_refreshBtnActionPerformed
     public void refreshStats() {
-        Main.mainObj.statsScreen.statsDisplay.setText(null);
+        Main.mainObj.statsScreen.statsDisplay.setText("Format is:\n Tag title: tag content \n document title---number of occurences\n\n");
 
         for (Tags tag : Main.mainObj.projectObj.getTags()) {
             Main.mainObj.statsScreen.statsDisplay.append(Main.mainObj.projectObj.seachTag(tag));
