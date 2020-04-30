@@ -41,9 +41,11 @@ public class Tags {
      * the GUI
      * @param tagName the name that this tag should go by.
      * @param taggedText the text content that this tag should be looking for
+     * @param tagIndex if this tag name has multiple sets of data, the number of that data (to keep each file name unique)
+     * @return true or false
      * @author Joseph Bermingham
      */
-    public static boolean writeTagToFile(String projectPath, String tagName, String taggedText) {
+    public static boolean writeTagToFile(String projectPath, String tagName, String taggedText, int tagIndex) {
         try {
             DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
 
@@ -69,7 +71,8 @@ public class Tags {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource domSource = new DOMSource(document);
-            File file = new File(Main.mainObj.projectObj.getPath() + "/" + tagName + ".xml");
+            //File file = new File(Main.mainObj.projectObj.getPath() + "/" + tagName + tagIndex + ".xml");
+            File file = new File(projectPath + "/" + tagName + tagIndex + ".xml");
             boolean exists = file.exists();
             try {
                 if (!exists) {

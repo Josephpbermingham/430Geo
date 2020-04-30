@@ -6,6 +6,8 @@ import newvivo.Screens.Main;
 import org.apache.commons.io.FileUtils;
 import newvivo.code.XMLParse;
 import org.apache.commons.lang3.StringUtils;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 public class Project {
 
@@ -44,7 +46,8 @@ public class Project {
                     if (content.contains(".xml")) {
                         System.out.println(path + "\\" + content);
                         XMLParse p = new XMLParse();
-                        this.tags.add(p.Parse(path + "\\" + content));
+                        //this.tags.add(p.Parse(path + "\\" + content));
+                        addTag(p.Parse(path + "\\" + content).getName(), p.Parse(path + "\\" + content).getContent());
                     } else if (content.contains(".docx")) {
                         this.textFiles.add(new Document(projectPath, content));
 
@@ -78,6 +81,7 @@ public class Project {
 
     }
 
+    //unused function
     public boolean RemoveDocument(String title) {
 
         int index = 0;
@@ -97,12 +101,30 @@ public class Project {
     }
 
     public boolean addTag(String tagName, String tagContent) {
-        Tags newTag = new Tags(tagName, tagContent);
-        Main.mainObj.projectObj.tags.add(newTag);
-        Tags.writeTagToFile("./", tagName, tagContent);
+        int tagIndex = 1;
+        boolean duplicateTag = false;
+        for(int i = 0; i < tags.size(); i++)
+        {
+            if(tags.get(i).tagName.equals(tagName))
+            {
+                tagIndex++;
+                if(tags.get(i).tagContent.equals(tagContent))
+                {
+                    duplicateTag = true;
+                }
+            }
+        }
+   
+        if(!duplicateTag && !tagName.equals("") && !tagContent.equals(""))
+        {
+            Tags newTag = new Tags(tagName, tagContent);
+            this.tags.add(newTag);
+            Tags.writeTagToFile(this.projectPath, tagName, tagContent, tagIndex);
+        }
         return true;
     }
 
+    //unused function
     public boolean removeTag(String tagContent) {
 
         int index = 0;
@@ -152,6 +174,7 @@ public class Project {
 
     }
 
+    //unused function
     public boolean populate(String path) { //reads projectData.txt to fill saved project docs and tags
 
         String fileName = "projectData.txt";
@@ -205,6 +228,7 @@ public class Project {
 
     }
 
+    //unused function
     public boolean saveProject() {
         //on save populate project textpaths and tags sepearted by line with only '+++'
         String fileName = "projectData.txt";
@@ -241,6 +265,108 @@ public class Project {
     }
 
     public ArrayList<Tags> getTags() {
+        updateTagsFromWordDocs();
         return this.tags;
+    }
+    
+    public void updateTagsFromWordDocs() {
+        String destDir = projectPath;
+        String zipFilePath;
+        for(int i = 0; i < textFiles.size(); i++)
+        {
+            zipFilePath = textFiles.get(i).getPath();
+            unzip(zipFilePath, destDir);
+            
+            File dir = new File(destDir + "/customXml");
+            File[] directoryListing = dir.listFiles();
+            if (directoryListing != null) {
+              XMLParse p = new XMLParse();
+              boolean duplicateTag;
+              String tagName;
+              String tagContent;
+              for (File child : directoryListing) {
+                // Do something with child
+                if(child.isFile())
+                {
+                    tagName = p.Parse(child.getAbsolutePath()).getName();
+                    tagContent = p.Parse(child.getAbsolutePath()).getContent();
+                    duplicateTag = false;
+                    for(int j = 0; j < tags.size(); j++)
+                    {
+                        if(tags.get(j).tagName.equals(tagName))
+                        {
+                            if(tags.get(j).tagContent.equals(tagContent))
+                            {
+                                duplicateTag = true;
+                            }
+                        }
+                    }
+                    if(!duplicateTag)
+                    {
+                        addTag(tagName, tagContent);
+                    }
+                }
+              }
+            } else {
+              // Handle the case where dir is not really a directory.
+              // Checking dir.isDirectory() above would not be sufficient
+              // to avoid race conditions with another process that deletes
+              // directories.
+            }
+            
+        }
+        //read in content from each XML
+    }
+    
+    private static void unzip(String zipFilePath, String destDir) {
+        File dir = new File(destDir);
+        // create output directory if it doesn't exist
+        if(!dir.exists()) dir.mkdirs();
+        FileInputStream fis;
+        //buffer for read and write data to file
+        byte[] buffer = new byte[1024];
+        try {
+            fis = new FileInputStream(zipFilePath);
+            ZipInputStream zis = new ZipInputStream(fis);
+            ZipEntry ze = zis.getNextEntry();
+            String[] arrcus;
+            String[] item;
+            boolean check1 = false;
+            boolean check2 = false;
+            while(ze != null){
+                check1 = false;
+                check2 = false;
+                String fileName = ze.getName();
+                File newFile = new File(destDir + File.separator + fileName);
+                arrcus = fileName.split("/",0);
+                item = fileName.split("item",0);
+                if(item.length > 1){
+                     if(item[1].charAt(0)=='1'||item[1].charAt(0)=='2'||item[1].charAt(0)=='3'||item[1].charAt(0)=='4'||item[1].charAt(0)=='5'||item[1].charAt(0)=='6'||item[1].charAt(0)=='7'||item[1].charAt(0)=='8'||item[1].charAt(0)=='9'){check1 = true;}
+                }
+                if(arrcus[0].equals("customXml")){check2 = true;}
+                //create directories for sub directories in zip
+                if(check1 && check2){
+                      new File(newFile.getParent()).mkdirs();
+                      FileOutputStream fos = new FileOutputStream(newFile);
+                      int len;
+                      
+                      while ((len = zis.read(buffer)) > 0) {
+                           
+                           fos.write(buffer, 0, len);
+                      }
+                      
+                      fos.close();
+                }
+                //close this ZipEntry
+                zis.closeEntry();
+                ze = zis.getNextEntry();
+            }
+            //close last ZipEntry
+            zis.closeEntry();
+            zis.close();
+            fis.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

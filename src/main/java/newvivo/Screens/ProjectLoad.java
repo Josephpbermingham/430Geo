@@ -131,6 +131,7 @@ public class ProjectLoad extends javax.swing.JFrame {
         }    }//GEN-LAST:event_addWordDocActionPerformed
 
     private void viewTagsBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTagsBTNActionPerformed
+        //Main.mainObj.updateWordData();
         Main.mainObj.projectLoad.setVisible(false);
         Main.mainObj.viewTags.refreshScreen();
         Main.mainObj.viewTags.setVisible(true);
@@ -164,6 +165,7 @@ public class ProjectLoad extends javax.swing.JFrame {
 
     private void viewTagStatsBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTagStatsBTNActionPerformed
         // TODO add your handling code here:
+        //Main.mainObj.updateWordData();
         Main.mainObj.statsScreen.refreshStats();
         Main.mainObj.statsScreen.setVisible(true);
         Main.mainObj.projectLoad.setVisible(false);

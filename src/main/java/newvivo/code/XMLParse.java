@@ -45,8 +45,12 @@ public class XMLParse {
                 System.out.println("\nNode Name :" + node.getNodeName());
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) node;
+                    if(eElement.getElementsByTagName("TaggedText").getLength() < 1)
+                    {
+                        return new Tags("","");
+                    }
                     return (new Tags(eElement.getElementsByTagName("TagName").item(0).getTextContent(),
-                            eElement.getElementsByTagName("TagName").item(0).getTextContent()));
+                            eElement.getElementsByTagName("TaggedText").item(0).getTextContent()));
                     /*
                             Main.mainObj.projectObj.addTag(eElement.getElementsByTagName("TagName").item(0).getTextContent(),
                             eElement.getElementsByTagName("TaggedText").item(0).getTextContent());
